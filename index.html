@@ -1,41 +1,39 @@
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                  "http://www.w3.org/TR/html4/strict.dtd">
-    <html>
-      <head>
-        <title>Media Example</title>
+<!DOCTYPE html>
 
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <script type="text/javascript" charset="utf-8">
-document.addEventListener("deviceready", function () {
-    $("#btnYes").on("click", function () {
-		alert('hola');
-        playAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3');
-    });
-    $("#btnNo").on("click", function () {
-        playAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3');
-    });
-}, false);
-var my_media = null;
-var mediaTimer = null;
-function playAudio(src) {
-    // Create Media object from src
-    my_media = new Media(src, onSuccess, onError);
-    // Play audio
-    my_media.play();
-}
-// onSuccess Callback
-function onSuccess() {
-    console.log("playAudio():Audio Success");
-}
-// onError Callback
-function onError(error) {
-    alert('code: ' + error.code + '\n' +
-        'message: ' + error.message + '\n');
-}
-        </script>
-      </head>
-      <body>
-        <button class="button" id="btnYes">Yes</button>
-<button class="button" id="btnNo">No</button> 
-      </body>
-    </html>
+<head>
+
+	<title>Audio Stream Example</title>
+
+	<!-- JavaScript -->
+	<script type="text/javascript">
+		// Auto Start
+		window.onload = function() { playStream(); };
+		// Code from http://www.joeldare.com/wiki/play_an_mp3_audio_stream_in_phonegap
+		function playStream() {
+		  try {
+		    var myaudio = new Audio('http://icecast.ksl.com:8000/');
+		    myaudio.id = 'playerMyAdio';
+		    myaudio.play();
+		  } catch (e) {
+		    alert('no audio support!');
+		  }
+		}
+	</script>
+
+	<!-- CSS -->
+	<style type="text/css">
+	<!--
+
+		body { background-color: white; margin: 0; padding: 0; font-family: sans-serif; font-size: 12px; }
+		p { margin-bottom: 10px; }
+
+	-->
+	</style>
+
+</head>
+
+<body>
+	<button onclick="playStream()">Listen Live</button>
+</body>
+
+</html>
